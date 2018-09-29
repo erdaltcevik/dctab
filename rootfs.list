@@ -1,0 +1,15 @@
+#dir		<name>																			<mode>	<uid>	<gid>
+
+#file		<name>					<location>											<mode>	<uid>	<gid>	[<hard links>]
+
+#slink	<name>					<target>												<mode>	<uid>	<gid>
+
+
+
+#nod		<name>																			<mode>	<uid>	<gid>	<dev_type>	<maj>	<min>
+nod		/dev/console																	0644		0		0		c				5		1
+
+#pipe		<name>																			<mode>	<uid>	<gid>
+
+#sock		<name>																			<mode>	<uid>	<gid>
+
