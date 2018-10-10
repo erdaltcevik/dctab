@@ -1,9 +1,63 @@
 #dir		<name>																			<mode>	<uid>	<gid>
-
+dir		/dev																				0755		0		0
+dir		/sbin																				0755		0		0
+dir		/bin																				0755		0		0
+	
 #file		<name>					<location>											<mode>	<uid>	<gid>	[<hard links>]
+file		/bin/busybox			/tks/dctab/br_out-skel/bin/busybox			4755		0		0
+
 
 #slink	<name>					<target>												<mode>	<uid>	<gid>
 
+slink		/sbin/agetty		   ../usr/sbin/agetty								777		0		0
+slink		/sbin/blkid				../usr/sbin/blkid									777		0		0
+slink		/sbin/depmod			../usr/bin/kmod									777		0		0
+slink		/sbin/fsck				../bin/busybox										777		0		0
+slink		/sbin/hwclock			../usr/sbin/hwclock								777		0		0
+slink		/sbin/init				../bin/busybox										777		0		0
+slink		/sbin/insmod			../usr/bin/kmod									777		0		0
+slink		/sbin/ip					../usr/sbin/ip										777		0		0
+slink		/sbin/lsmod				../usr/bin/kmod									777		0		0
+slink		/sbin/modinfo			../usr/bin/kmod									777		0		0
+slink		/sbin/modprobe			../usr/bin/kmod									777		0		0
+slink		/sbin/rmmod				../usr/bin/kmod									777		0		0
+slink		/sbin/sysctl			../usr/sbin/sysctl								777		0		0
+
+
+slink		/bin/bash				../usr/bin/bash									777		0		0
+slink		/bin/cat					../usr/bin/coreutils								777		0		0
+slink		/bin/chmod				../usr/bin/coreutils								777		0		0
+slink		/bin/chown				../usr/bin/coreutils								777		0		0
+slink		/bin/cp					../usr/bin/coreutils								777		0		0
+slink		/bin/date				../usr/bin/coreutils								777		0		0
+slink		/bin/dd					../usr/bin/coreutils								777		0		0
+slink		/bin/df					../usr/bin/coreutils								777		0		0
+slink		/bin/dmesg				../usr/bin/dmesg									777		0		0
+slink		/bin/echo				../usr/bin/coreutils								777		0		0
+slink		/bin/false				../usr/bin/coreutils								777		0		0
+slink		/bin/free				../usr/bin/free									777		0		0
+slink		/bin/hush				busybox												777		0		0
+slink		/bin/kill				../usr/bin/coreutils								777		0		0
+slink		/bin/ln					../usr/bin/coreutils								777		0		0
+slink		/bin/login				../usr/bin/login									777		0		0
+slink		/bin/ls					../usr/bin/coreutils								777		0		0
+slink		/bin/lsblk				../usr/bin/lsblk									777		0		0
+slink		/bin/mkdir				../usr/bin/coreutils								777		0		0
+slink		/bin/mknod				../usr/bin/coreutils								777		0		0
+slink		/bin/mktemp				../usr/bin/coreutils								777		0		0
+slink		/bin/mount				busybox												777		0		0
+slink		/bin/mv					../usr/bin/coreutils								777		0		0
+slink		/bin/printenv			../usr/bin/coreutils								777		0		0
+slink		/bin/ps					../usr/bin/coreutils								777		0		0
+slink		/bin/pwd					../usr/bin/coreutils								777		0		0
+slink		/bin/rm					../usr/bin/coreutils								777		0		0
+slink		/bin/sh					busybox												777		0		0
+slink		/bin/sync				../usr/bin/coreutils								777		0		0
+slink		/bin/touch				../usr/bin/coreutils								777		0		0
+slink		/bin/true				../usr/bin/coreutils								777		0		0
+slink		/bin/umount				../usr/bin/umount									777		0		0
+slink		/bin/uname				../usr/bin/coreutils								777		0		0
+slink		/bin/uptime				../usr/bin/uptime									777		0		0
 
 
 #nod		<name>																			<mode>	<uid>	<gid>	<dev_type>	<maj>	<min>
