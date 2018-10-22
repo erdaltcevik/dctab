@@ -5,6 +5,7 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pinctrl/sun4i-a10.h>
 #include <dt-bindings/pwm/pwm.h>
+#include <dt-bindings/input/input.h>
 
 / {
 	model = "DCTAB A33 Tablet";
@@ -16,6 +17,69 @@
 
 	chosen {
 		stdout-path = "serial0:115200n8";
+	};
+
+	backlight: backlight {
+		compatible = "pwm-backlight";
+		pwms = <&pwm 0 50000 PWM_POLARITY_INVERTED>;
+		brightness-levels = <0 10 20 30 40 50 60 70 80 90 100>;
+		default-brightness-level = <8>;
+		power-supply = <&reg_vcc5v0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&bl_en_pin>;
+		enable-gpios = <&pio 7 6 GPIO_ACTIVE_HIGH>; /* PH6 */
+	};
+
+	wifi_pwrseq: wifi_pwrseq {
+		compatible = "mmc-pwrseq-simple";
+		pinctrl-names = "default";
+		pinctrl-0 = <&wifi_pwrseq_pin_dctab>;
+		reset-gpios = <&r_pio 0 6 GPIO_ACTIVE_LOW>; /* PL6 */
+		/* The esp8089 needs 200 ms after driving wifi-en high */
+		post-power-on-delay-ms = <200>;
+	};
+
+	reg_ahci_5v: ahci-5v {
+		compatible = "regulator-fixed";
+		regulator-name = "ahci-5v";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		regulator-boot-on;
+		enable-active-high;
+		gpio = <&pio 1 8 GPIO_ACTIVE_HIGH>;
+		status = "disabled";
+	};
+
+	reg_usb0_vbus: usb0-vbus {
+		compatible = "regulator-fixed";
+		regulator-name = "usb0-vbus";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		enable-active-high;
+		gpio = <&pio 1 9 GPIO_ACTIVE_HIGH>;
+		status = "disabled";
+	};
+
+	reg_usb1_vbus: usb1-vbus {
+		compatible = "regulator-fixed";
+		regulator-name = "usb1-vbus";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		regulator-boot-on;
+		enable-active-high;
+		gpio = <&pio 7 6 GPIO_ACTIVE_HIGH>;
+		status = "disabled";
+	};
+
+	reg_usb2_vbus: usb2-vbus {
+		compatible = "regulator-fixed";
+		regulator-name = "usb2-vbus";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		regulator-boot-on;
+		enable-active-high;
+		gpio = <&pio 7 3 GPIO_ACTIVE_HIGH>;
+		status = "disabled";
 	};
 
 	reg_vcc3v0: vcc3v0 {
@@ -38,18 +102,133 @@
 		regulator-min-microvolt = <5000000>;
 		regulator-max-microvolt = <5000000>;
 	};
+};
 
-	backlight: backlight {
-		compatible = "pwm-backlight";
-		pwms = <&pwm 0 50000 PWM_POLARITY_INVERTED>;
-		brightness-levels = <0 10 20 30 40 50 60 70 80 90 100>;
-		default-brightness-level = <8>;
-		power-supply = <&reg_vcc5v0>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&bl_en_pin>;
-		enable-gpios = <&pio 7 6 GPIO_ACTIVE_HIGH>; /* PH6 */
+&pio {
+	mmc0_cd_pin: mmc0_cd_pin@0 {
+		pins = "PB4";
+		function = "gpio_in";
+		bias-pull-up;
+	};
+
+	ts_power_pin: ts_power_pin@0 {
+		pins = "PH1";
+		function = "gpio_out";
+	};
+
+	usb0_id_detect_pin: usb0_id_detect_pin@0 {
+		pins = "PH8";
+		function = "gpio_in";
+		bias-pull-up;
+	};
+
+	bl_en_pin: bl_en_pin@0 {
+		pins = "PH6";
+		function = "gpio_out";
 	};
 };
+
+&mmc0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&mmc0_pins_a>, <&mmc0_cd_pin>;
+	vmmc-supply = <&reg_dcdc1>;
+	bus-width = <4>;
+	cd-gpios = <&pio 1 4 GPIO_ACTIVE_LOW>; /* PB4 */
+	status = "okay";
+};
+
+&mmc1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&mmc1_pins_a>;
+	vmmc-supply = <&reg_dldo1>;
+	mmc-pwrseq = <&wifi_pwrseq>;
+	bus-width = <4>;
+	non-removable;
+	status = "okay";
+
+	esp8089: sdio_wifi@1 {
+		compatible = "esp,esp8089";
+		reg = <1>;
+		esp,crystal-26M-en = <2>;
+	};
+};
+
+&r_pio {
+	wifi_pwrseq_pin_dctab: wifi_pwrseq_pin@0 {
+		pins = "PL6";
+		function = "gpio_out";
+	};
+};
+
+&i2c0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&i2c0_pins_a>;
+	status = "okay";
+	clock-frequency = <400000>;
+
+	touchscreen: touchscreen@0 {
+		compatible = "silead,gsl1680";
+		reg = <0x40>;
+		interrupt-parent = <&pio>;
+		interrupts = <1 5 IRQ_TYPE_EDGE_FALLING>; /* PB5 */
+		pinctrl-names = "default";
+		pinctrl-0 = <&ts_power_pin>;
+		power-gpios = <&pio 7 1 GPIO_ACTIVE_HIGH>; /* PH1 */
+		firmware-name = "gsl1680-polaroid-mid2407pxe03.fw";
+		touchscreen-size-x = <960>;
+		touchscreen-size-y = <640>;
+		touchscreen-inverted-x;
+		touchscreen-inverted-y;
+		vddio-supply = <&reg_ldo_io1>;
+		status = "okay";
+	};
+};
+
+&i2c1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&i2c1_pins_a>;
+	status = "okay";
+
+	ds3231: ds3231@68 {
+		compatible = "maxim,ds3231";
+		reg = <0x68>;
+	};
+};
+
+&lradc {
+	vref-supply = <&reg_vcc3v0>;
+	status = "okay";
+
+	button@200 {
+		label = "Volume Up";
+		linux,code = <KEY_VOLUMEUP>;
+		channel = <0>;
+		voltage = <200000>;
+	};
+
+	button@400 {
+		label = "Volume Down";
+		linux,code = <KEY_VOLUMEDOWN>;
+		channel = <0>;
+		voltage = <400000>;
+	};
+};
+
+&pwm {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pwm0_pins>;
+	status = "okay";
+};
+
+&usbphy {
+	pinctrl-names = "default";
+	pinctrl-0 = <&usb0_id_detect_pin>;
+	usb0_id_det-gpio = <&pio 7 8 GPIO_ACTIVE_HIGH>; /* PH8 */
+	usb0_vbus_power-supply = <&usb_power_supply>;
+	usb0_vbus-supply = <&reg_drivevbus>;
+	status = "okay";
+};
+
 
 &r_rsb {
 	status = "okay";
@@ -66,6 +245,14 @@
 };
 
 #include "axp223.dtsi"
+
+&ac_power_supply {
+	status = "okay";
+};
+
+&battery_power_supply {
+	status = "okay";
+};
 
 &reg_aldo1 {
 	regulator-always-on;
@@ -153,53 +340,22 @@
 	cpu-supply = <&reg_dcdc2>;
 };
 
-&simplefb_lcd {
-	vcc-lcd-supply = <&reg_dc1sw>;
-};
-
-&pio {
-	bl_en_pin: bl_en_pin@0 {
-		pins = "PH6";
-		function = "gpio_out";
-	};
-
-	mmc0_cd_pin: mmc0_cd_pin@0 {
-		pins = "PB4";
-		function = "gpio_in";
-		allwinner,pull = <SUN4I_PINCTRL_PULL_UP>;
-	};
-};
-
-&mmc0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&mmc0_pins_a>, <&mmc0_cd_pin>;
-	vmmc-supply = <&reg_dcdc1>;
-	bus-width = <4>;
-	non-removable;
-	status = "okay";
-};
-
-&i2c0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&i2c0_pins_a>;
-	status = "okay";
-	clock-frequency = <400000>;
-};
-
-&i2c1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&i2c1_pins_a>;
-	status = "okay";
-};
-
-&pwm {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pwm0_pins>;
-	status = "okay";
-};
-
 &r_uart {
 	pinctrl-names = "default";
 	pinctrl-0 = <&r_uart_pins_a>;
 	status = "okay";
 };
+
+&simplefb_lcd {
+	vcc-lcd-supply = <&reg_dc1sw>;
+};
+
+&usb_otg {
+	dr_mode = "otg";
+	status = "okay";
+};
+
+&usb_power_supply {
+	status = "okay";
+};
+
