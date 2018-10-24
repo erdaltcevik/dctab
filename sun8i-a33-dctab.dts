@@ -174,7 +174,7 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <&ts_power_pin>;
 		power-gpios = <&pio 7 1 GPIO_ACTIVE_HIGH>; /* PH1 */
-		firmware-name = "gsl1680-polaroid-mid2407pxe03.fw";
+		firmware-name = "gslX680new-m86hd.fw";
 		touchscreen-size-x = <960>;
 		touchscreen-size-y = <640>;
 		touchscreen-inverted-x;
