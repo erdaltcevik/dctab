@@ -570,7 +570,7 @@ CONFIG_STATIC=y
 # CONFIG_LOSETUP is not set
 # CONFIG_LSPCI is not set
 # CONFIG_LSUSB is not set
-# CONFIG_MDEV is not set
+
 # CONFIG_MESG is not set
 # CONFIG_MKE2FS is not set
 # CONFIG_MKFS_EXT2 is not set

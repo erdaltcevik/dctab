@@ -4,7 +4,7 @@ dir		/bin																				0755		0		0
 	
 #file		<name>					<location>											<mode>	<uid>	<gid>	[<hard links>]
 file		/bin/busybox			/tks/dctab/br_out-skel/bin/busybox			4755		0		0
-
+file		/etc/init.d/S01dctab	/tks/dctab/S01dctab								0755		0		0
 
 #slink	<name>					<target>												<mode>	<uid>	<gid>
 
