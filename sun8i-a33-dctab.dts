@@ -7,10 +7,6 @@
 	model = "DCTAB A33 Tablet";
 	compatible = "allwinner,dctab-a33", "allwinner,sun8i-a33";
 
-	chosen {
-		stdout-path = "serial0:115200n8";
-	};
-
 	wifi_pwrseq: wifi_pwrseq {
 		compatible = "mmc-pwrseq-simple";
 		pinctrl-names = "default";
@@ -20,22 +16,6 @@
 		post-power-on-delay-ms = <200>;
 	};
 
-};
-
-&nfc {
-/*	dmas = <&dma 5>;*/
-/* dma-names = "rxtx";*/
-/*   status = "okay";*/
-
-	nand@0 {
-		#address-cells = <2>;
-		#size-cells = <2>; 
-		reg = <0>;
-		allwinner,rb = <0>;
-
-/*		nand-ecc-mode = "hw";*/
-/*		nand-on-flash-bbt;*/
-	};
 };
 
 &mmc1 {
@@ -86,8 +66,3 @@
 	status = "okay";
 };
 
-&uart1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&uart1_pins_a>, <&uart1_pins_cts_rts_a>;
-	status = "okay";
-};
