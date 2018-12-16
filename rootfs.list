@@ -7,6 +7,7 @@ file		/bin/busybox			/tks/dctab/br_out-skel/bin/busybox			4755		0		0
 file		/etc/inittab			/tks/dctab/etc/inittab							0644		0		0
 file		/etc/fstab				/tks/dctab/etc/fstab								0644		0		0
 file		/etc/init.d/S01dctab	/tks/dctab/etc/init.d/S01dctab				0755		0		0
+file		/root/.profile			/tks/dctab/root/.profile						0644		0		0
 
 #slink	<name>					<target>												<mode>	<uid>	<gid>
 slink		/sbin/fsck				../bin/busybox										777		0		0

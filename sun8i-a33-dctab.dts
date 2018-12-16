@@ -18,6 +18,21 @@
 
 };
 
+&nfc {
+/*	status = "okay";*/
+
+	nand@0 {
+		reg = <0>;
+		allwinner,rb = <0>;
+
+		nand-ecc-mode = "hw";
+	};
+};
+
+&rtc {
+	status = "disabled";
+};
+
 &mmc1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&mmc1_pins_a>;
