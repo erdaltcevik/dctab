@@ -1,31 +1,102 @@
-#dir		<name>																			<mode>	<uid>	<gid>
-dir		/sbin																				0755		0		0
-dir		/bin																				0755		0		0
-	
-#file		<name>					<location>											<mode>	<uid>	<gid>	[<hard links>]
-file		/bin/busybox			/tks/dctab/br_out-skel/bin/busybox			4755		0		0
-file		/etc/inittab			/tks/dctab/etc/inittab							0644		0		0
-file		/etc/fstab				/tks/dctab/etc/fstab								0644		0		0
-file		/etc/init.d/S01dctab	/tks/dctab/etc/init.d/S01dctab				0755		0		0
-file		/root/.profile			/tks/dctab/root/.profile						0644		0		0
+#------------------------------------------------------------------------------------------------------------------------------------
+dir	/bin																																			755	0	0
+file	/bin/busybox												/tks/dctab/br_out-skel/bin/busybox							  	  4755	0	0
+slink	/bin/ash														busybox																		777	0	0
+slink	/bin/ln														busybox																		777	0	0
+slink	/bin/login													busybox																		777	0	0
+slink	/bin/ls														busybox																		777	0	0
+slink	/bin/mkdir													busybox																		777	0	0
+slink	/bin/mount													busybox																		777	0	0
+slink	/bin/sh														busybox																		777	0	0
+slink	/bin/id														busybox																		777	0	0
 
-#slink	<name>					<target>												<mode>	<uid>	<gid>
-slink		/sbin/fsck				../bin/busybox										777		0		0
-slink		/sbin/getty		   	../bin/busybox										777		0		0
-slink		/sbin/init				../bin/busybox										777		0		0
-slink		/bin/ash					busybox												777		0		0
-slink		/bin/ln					busybox												777		0		0
-slink		/bin/login				busybox												777		0		0
-slink		/bin/ls					busybox												777		0		0
-slink		/bin/mkdir				busybox												777		0		0
-slink		/bin/mount				busybox												777		0		0
-slink		/bin/sh					busybox												777		0		0
-slink		/bin/id					busybox												777		0		0
+#------------------------------------------------------------------------------------------------------------------------------------
+dir	/dev																																			755	0	0
+nod	/dev/console																																644	0	0	c	5	1
+slink	/dev/fd														/proc/self/fd																777	0	0
+slink	/dev/stdin													/proc/self/fd/0															777	0	0
+slink	/dev/stdout													/proc/self/fd/1															777	0	0
+slink	/dev/stderr													/proc/self/fd/2															777	0	0
+dir	/dev/pts																																		755	0	0
+dir	/dev/shm																																		755	0	0
+#------------------------------------------------------------------------------------------------------------------------------------
+dir	/etc																																			755	0	0
+file 	/etc/environment 											/tks/dctab/rootfs/etc/environment 									644	0	0
+dir 	/etc/fonts 																																	755	0	0
+dir 	/etc/fonts/conf.d 																														755 	0 	0
+slink /etc/fonts/conf.d/10-hinting-slight.conf 			/usr/share/fontconfig/conf.avail/10-hinting-slight.conf 		777 	0 	0
+slink /etc/fonts/conf.d/10-scale-bitmap-fonts.conf 	/usr/share/fontconfig/conf.avail/10-scale-bitmap-fonts.conf 777 	0	0
+slink /etc/fonts/conf.d/20-unhint-small-vera.conf 		/usr/share/fontconfig/conf.avail/20-unhint-small-vera.conf 	777	0	0
+slink /etc/fonts/conf.d/30-metric-aliases.conf 			/usr/share/fontconfig/conf.avail/30-metric-aliases.conf 		777	0 	0
+slink /etc/fonts/conf.d/40-nonlatin.conf 					/usr/share/fontconfig/conf.avail/40-nonlatin.conf 				777 	0	0
+slink /etc/fonts/conf.d/45-generic.conf 					/usr/share/fontconfig/conf.avail/45-generic.conf 				777 	0	0
+slink /etc/fonts/conf.d/45-latin.conf 						/usr/share/fontconfig/conf.avail/45-latin.conf 					777 	0	0
+slink /etc/fonts/conf.d/49-sansserif.conf 				/usr/share/fontconfig/conf.avail/49-sansserif.conf 			777 	0 	0
+slink /etc/fonts/conf.d/50-user.conf 						/usr/share/fontconfig/conf.avail/50-user.conf 					777 	0 	0
+slink /etc/fonts/conf.d/51-local.conf 						/usr/share/fontconfig/conf.avail/51-local.conf 					777 	0	0
+slink /etc/fonts/conf.d/60-generic.conf 					/usr/share/fontconfig/conf.avail/60-generic.conf 				777 	0 	0
+slink /etc/fonts/conf.d/60-latin.conf 						/usr/share/fontconfig/conf.avail/60-latin.conf 					777 	0 	0
+slink /etc/fonts/conf.d/65-fonts-persian.conf 			/usr/share/fontconfig/conf.avail/65-fonts-persian.conf 		777 	0 	0
+slink /etc/fonts/conf.d/65-nonlatin.conf 					/usr/share/fontconfig/conf.avail/65-nonlatin.conf 				777 	0 	0
+slink /etc/fonts/conf.d/69-unifont.conf 					/usr/share/fontconfig/conf.avail/69-unifont.conf 				777 	0 	0
+slink /etc/fonts/conf.d/80-delicious.conf 				/usr/share/fontconfig/conf.avail/80-delicious.conf 			777 	0 	0
+slink /etc/fonts/conf.d/90-synthetic.conf 				/usr/share/fontconfig/conf.avail/90-synthetic.conf 			777 	0 	0
+file 	/etc/fonts/fonts.conf									/tks/dctab/rootfs/etc/fonts/fonts.conf						 		644 	0	0
+file 	/etc/group 													/tks/dctab/rootfs/etc/group 											644 	0 	0
+file 	/etc/hostname 												/tks/dctab/rootfs/etc/hostname 										644 	0 	0
+file 	/etc/hosts 													/tks/dctab/rootfs/etc/hosts 											644 	0 	0
 
-#nod		<name>																			<mode>	<uid>	<gid>	<dev_type>	<maj>	<min>
-nod		/dev/console																	0644		0		0		c				5		1
 
-#pipe		<name>																			<mode>	<uid>	<gid>
+file	/etc/inittab												/tks/dctab/etc/inittab													644	0	0
+file	/etc/fstab													/tks/dctab/etc/fstab														644	0	0
+file	/etc/init.d/S01dctab										/tks/dctab/etc/init.d/S01dctab										755	0	0
 
-#sock		<name>																			<mode>	<uid>	<gid>
+
+
+
+#------------------------------------------------------------------------------------------------------------------------------------
+file	/init															/tks/dctab/filesys/init													755	0	0
+#------------------------------------------------------------------------------------------------------------------------------------
+slink	/lib															usr/lib																		777	0	0
+slink	/lib32														usr/lib																		777	0	0
+#------------------------------------------------------------------------------------------------------------------------------------
+dir	/media																																		755	0	0
+dir	/mnt																																			755	0	0
+dir	/opt																																			755	0	0
+dir	/proc																																			755	0	0
+#------------------------------------------------------------------------------------------------------------------------------------
+dir	/root																																			700	0	0
+file	/root/.profile												/tks/dctab/filesys/root/.profile										644	0	0
+#------------------------------------------------------------------------------------------------------------------------------------
+dir	/run																																			755	0	0
+#------------------------------------------------------------------------------------------------------------------------------------
+dir	/sbin																																			755	0	0
+slink	/sbin/fsck													../bin/busybox																777	0	0
+slink	/sbin/getty		   										../bin/busybox																777	0	0
+slink	/sbin/init													../bin/busybox																777	0	0
+
+#------------------------------------------------------------------------------------------------------------------------------------
+dir	/sys																																			755	0	0
+#------------------------------------------------------------------------------------------------------------------------------------
+dir	/tmp																			  												  			  1777	0	0
+dir	/tmp/fontconfig																															755	0	0
+#------------------------------------------------------------------------------------------------------------------------------------
+dir	/usr																																			755	0	0
+#------------------------------------------------------------------------------------------------------------------------------------
+dir	/var																																			755	0	0
+dir	/var/lib																																		755	0	0
+slink	/var/lib/misc												../../tmp																	777	0	0
+slink	/var/cache													../tmp																		777	0	0
+slink	/var/lock													../tmp																		777	0	0
+slink	/var/log														../tmp																		777	0	0
+slink	/var/run														../run																		777	0	0
+slink	/var/tmp														../tmp																		777	0	0
+#------------------------------------------------------------------------------------------------------------------------------------
+
+#dir	 <name>																										<mode> <uid> <gid>
+#file	 <name>														<location>									<mode> <uid> <gid> [<hard links>]
+#slink <name>														<target>										<mode> <uid> <gid>
+#nod	 <name>																										<mode> <uid> <gid> <dev_type>	<maj>	<min>
+#pipe	 <name>																										<mode> <uid> <gid>
+#sock	 <name>																										<mode> <uid> <gid>
 
