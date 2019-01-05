@@ -1,6 +1,6 @@
 #------------------------------------------------------------------------------------------------------------------------------------
 dir	/bin																																			755	0	0
-file	/bin/busybox												/tks/dctab/br_out-skel/bin/busybox							  	  4755	0	0
+file	/bin/busybox												/tks/dctab/br_img-skel/bin/busybox							  	  4755	0	0
 slink	/bin/ash														busybox																		777	0	0
 slink	/bin/ln														busybox																		777	0	0
 slink	/bin/login													busybox																		777	0	0
@@ -14,6 +14,7 @@ slink	/bin/id														busybox																		777	0	0
 dir	/dev																																			755	0	0
 nod	/dev/console																																644	0	0	c	5	1
 slink	/dev/fd														/proc/self/fd																777	0	0
+slink	/dev/log														/tmp/log																		777	0	0
 slink	/dev/stdin													/proc/self/fd/0															777	0	0
 slink	/dev/stdout													/proc/self/fd/1															777	0	0
 slink	/dev/stderr													/proc/self/fd/2															777	0	0
@@ -21,7 +22,7 @@ dir	/dev/pts																																		755	0	0
 dir	/dev/shm																																		755	0	0
 #------------------------------------------------------------------------------------------------------------------------------------
 dir	/etc																																			755	0	0
-file 	/etc/environment 											/tks/dctab/rootfs/etc/environment 									644	0	0
+file 	/etc/environment 											/tks/dctab/br_img-full/etc/environment								644	0	0
 dir 	/etc/fonts 																																	755	0	0
 dir 	/etc/fonts/conf.d 																														755 	0 	0
 slink /etc/fonts/conf.d/10-hinting-slight.conf 			/usr/share/fontconfig/conf.avail/10-hinting-slight.conf 		777 	0 	0
