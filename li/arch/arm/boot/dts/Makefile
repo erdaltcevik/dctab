@@ -1,5 +1,5 @@
 dtb-$(CONFIG_MACH_SUN8I) += \
-        sun8i-a33-dctab.dtb \
+	sun8i-a33-dctab.dtb \
 	sun8i-a23-evb.dtb \
 	sun8i-a23-gt90h-v4.dtb \
 	sun8i-a23-inet86dz.dtb \

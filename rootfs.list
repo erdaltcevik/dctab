@@ -13,13 +13,13 @@ slink	/bin/id														busybox																		777	0	0
 #------------------------------------------------------------------------------------------------------------------------------------
 dir	/dev																																			755	0	0
 nod	/dev/console																																644	0	0	c	5	1
-slink	/dev/fd														/proc/self/fd																777	0	0
-slink	/dev/log														/tmp/log																		777	0	0
-slink	/dev/stdin													/proc/self/fd/0															777	0	0
-slink	/dev/stdout													/proc/self/fd/1															777	0	0
-slink	/dev/stderr													/proc/self/fd/2															777	0	0
+slink	/dev/fd														../proc/self/fd															777	0	0
+slink	/dev/log														../tmp/log																	777	0	0
 dir	/dev/pts																																		755	0	0
 dir	/dev/shm																																		755	0	0
+slink	/dev/stderr													../proc/self/fd/2															777	0	0
+slink	/dev/stdin													../proc/self/fd/0															777	0	0
+slink	/dev/stdout													../proc/self/fd/1															777	0	0
 #------------------------------------------------------------------------------------------------------------------------------------
 dir	/etc																																			755	0	0
 file 	/etc/environment 											/tks/dctab/br_img-full/etc/environment								644	0	0
@@ -42,21 +42,81 @@ slink /etc/fonts/conf.d/65-nonlatin.conf 					/usr/share/fontconfig/conf.avail/6
 slink /etc/fonts/conf.d/69-unifont.conf 					/usr/share/fontconfig/conf.avail/69-unifont.conf 				777 	0 	0
 slink /etc/fonts/conf.d/80-delicious.conf 				/usr/share/fontconfig/conf.avail/80-delicious.conf 			777 	0 	0
 slink /etc/fonts/conf.d/90-synthetic.conf 				/usr/share/fontconfig/conf.avail/90-synthetic.conf 			777 	0 	0
-file 	/etc/fonts/fonts.conf									/tks/dctab/rootfs/etc/fonts/fonts.conf						 		644 	0	0
-file 	/etc/group 													/tks/dctab/rootfs/etc/group 											644 	0 	0
-file 	/etc/hostname 												/tks/dctab/rootfs/etc/hostname 										644 	0 	0
-file 	/etc/hosts 													/tks/dctab/rootfs/etc/hosts 											644 	0 	0
-
-
-file	/etc/inittab												/tks/dctab/etc/inittab													644	0	0
-file	/etc/fstab													/tks/dctab/etc/fstab														644	0	0
-file	/etc/init.d/S01dctab										/tks/dctab/etc/init.d/S01dctab										755	0	0
-
-
-
-
+file 	/etc/fonts/fonts.conf									/tks/dctab/br_img-full/etc/fonts/fonts.conf						644 	0	0
+file	/etc/fstab													/tks/dctab/filesys/etc/fstab											644	0	0
+file 	/etc/group 													/tks/dctab/br_img-full/etc/group 									644 	0 	0
+file 	/etc/hostname 												/tks/dctab/br_img-full/etc/hostname 								644 	0 	0
+file 	/etc/hosts 													/tks/dctab/br_img-full/etc/hosts 									644 	0 	0
+dir 	/etc/init.d 																																755 	0 	0
+file 	/etc/init.d/rcK 											/tks/dctab/br_img-full/etc/init.d/rcK 								755 	0 	0
+file 	/etc/init.d/rcS 											/tks/dctab/br_img-full/etc/init.d/rcS 								755 	0 	0
+file	/etc/init.d/S91dctab										/tks/dctab/filesys/etc/init.d/S91dctab								755	0	0
+file	/etc/inittab												/tks/dctab/filesys/etc/inittab										644	0	0
+file 	/etc/inputrc 												/tks/dctab/br_img-full/etc/inputrc 									644 	0 	0
+dir 	/etc/iproute2 																																755 	0 	0
+file 	/etc/iproute2/bpf_pinning 								/tks/dctab/br_img-full/etc/iproute2/bpf_pinning 				644 	0 	0
+file 	/etc/iproute2/ematch_map 								/tks/dctab/br_img-full/etc/iproute2/ematch_map 					644 	0 	0
+file 	/etc/iproute2/group 										/tks/dctab/br_img-full/etc/iproute2/group 						644 	0	0
+file 	/etc/iproute2/nl_protos 								/tks/dctab/br_img-full/etc/iproute2/nl_protos 					644 	0 	0
+file 	/etc/iproute2/rt_dsfield 								/tks/dctab/br_img-full/etc/iproute2/rt_dsfield 					644 	0 	0
+file 	/etc/iproute2/rt_protos 								/tks/dctab/br_img-full/etc/iproute2/rt_protos 					644 	0 	0
+file 	/etc/iproute2/rt_realms 								/tks/dctab/br_img-full/etc/iproute2/rt_realms 					644 	0 	0
+file 	/etc/iproute2/rt_scopes	 								/tks/dctab/br_img-full/etc/iproute2/rt_scopes 					644 	0 	0
+file 	/etc/iproute2/rt_tables 								/tks/dctab/br_img-full/etc/iproute2/rt_tables 					644 	0 	0
+file 	/etc/issue 													/tks/dctab/br_img-full/etc/issue 									644 	0 	0
+slink /etc/localtime 											../usr/share/zoneinfo/Turkey 											777 	0 	0
+file 	/etc/mke2fs.conf 											/tks/dctab/br_img-full/etc/mke2fs.conf 							644 	0 	0
+slink /etc/mtab 													../proc/self/mounts 														777 	0 	0
+dir 	/etc/network 																																755 	0 	0
+dir 	/etc/network/if-down.d 																													755 	0 	0
+dir 	/etc/network/if-post-down.d 																											755 	0 	0
+dir 	/etc/network/if-pre-up.d 																												755 	0 	0
+file 	/etc/network/if-pre-up.d/wait_iface 				/tks/dctab/br_img-full/etc/network/if-pre-up.d/wait_iface 	755 	0 	0
+dir 	/etc/network/if-up.d 																													755 	0 	0
+file 	/etc/network/interfaces 								/tks/dctab/br_img-full/etc/network/interfaces 					644 	0 	0
+file 	/etc/nsswitch.conf 										/tks/dctab/br_img-full/etc/nsswitch.conf 							644 	0 	0
+slink /etc/os-release 											../usr/lib/os-release 													777 	0 	0
+dir 	/etc/pam.d 																																	755 	0 	0
+file 	/etc/pam.d/login 											/tks/dctab/br_img-full/etc/pam.d/login 							644 	0 	0
+file 	/etc/pam.d/other 											/tks/dctab/br_img-full/etc/pam.d/other 							644 	0 	0
+file 	/etc/pam.d/sshd 											/tks/dctab/br_img-full/etc/pam.d/sshd 								644 	0 	0
+file 	/etc/passwd 												/tks/dctab/br_img-full/etc/passwd 									644 	0 	0
+file 	/etc/profile 												/tks/dctab/br_img-full/etc/profile 									644 	0 	0
+dir 	/etc/profile.d 																															755 	0 	0
+file 	/etc/profile.d/umask.sh 								/tks/dctab/br_img-full/etc/profile.d/umask.sh 					644 	0 	0
+file 	/etc/protocols 											/tks/dctab/br_img-full/etc/protocols 								644 	0 	0
+slink /etc/resolv.conf 											../tmp/resolv.conf 														777 	0 	0
+dir 	/etc/security 																																755 	0 	0
+file 	/etc/security/access.conf 								/tks/dctab/br_img-full/etc/security/access.conf 				644 	0 	0
+file 	/etc/security/group.conf 								/tks/dctab/br_img-full/etc/security/group.conf 					644 	0 	0
+file 	/etc/security/limits.conf 								/tks/dctab/br_img-full/etc/security/limits.conf 				644 	0 	0
+dir 	/etc/security/limits.d 																													755 	0 	0
+file 	/etc/security/namespace.conf 							/tks/dctab/br_img-full/etc/security/namespace.conf 			644 	0 	0
+dir 	/etc/security/namespace.d 																												755 	0 	0
+file 	/etc/security/namespace.init 							/tks/dctab/br_img-full/etc/security/namespace.init 			755 	0 	0
+file 	/etc/security/pam_env.conf 							/tks/dctab/br_img-full/etc/security/pam_env.conf 				644 	0 	0
+file 	/etc/security/time.conf 								/tks/dctab/br_img-full/etc/security/time.conf 					644 	0 	0
+file 	/etc/services 												/tks/dctab/br_img-full/etc/services 								644 	0 	0
+file 	/etc/shadow 												/tks/dctab/br_img-full/etc/shadow 									600 	0 	0
+file 	/etc/shells 												/tks/dctab/br_img-full/etc/shells 									644 	0 	0
+dir 	/etc/ssh 																																	755 	0 	0
+file 	/etc/ssh/moduli 											/tks/dctab/br_img-full/etc/ssh/moduli 								644 	0 	0
+file 	/etc/ssh/ssh_config 										/tks/dctab/br_img-full/etc/ssh/ssh_config 						644 	0 	0
+file 	/etc/ssh/sshd_config 									/tks/dctab/br_img-full/etc/ssh/sshd_config 						644 	0 	0
+dir 	/etc/ssl 																																	755 	0 	0
+dir 	/etc/ssl/certs																																755 	0 	0
+dir 	/etc/ssl/man																																755 	0 	0
+dir 	/etc/ssl/man/man1																															755 	0 	0
+dir 	/etc/ssl/man/man3																															755 	0 	0
+dir 	/etc/ssl/man/man5																															755 	0 	0
+dir 	/etc/ssl/man/man7																															755 	0 	0
+dir 	/etc/ssl/misc																																755 	0 	0
+file 	/etc/ssl/openssl.cnf 									/tks/dctab/br_img-full/etc/ssl/openssl.cnf 						644 	0 	0
+dir 	/etc/ssl/private																															755 	0 	0
+file 	/etc/syslog.conf											/tks/dctab/br_img-full/etc/syslog.conf 							644 	0 	0
+file 	/etc/timezone 												/tks/dctab/br_img-full/etc/timezone 								644 	0 	0
 #------------------------------------------------------------------------------------------------------------------------------------
-file	/init															/tks/dctab/filesys/init													755	0	0
+file	/init															/tks/dctab/br_img-full/init											755	0	0
 #------------------------------------------------------------------------------------------------------------------------------------
 slink	/lib															usr/lib																		777	0	0
 slink	/lib32														usr/lib																		777	0	0
@@ -75,7 +135,6 @@ dir	/sbin																																			755	0	0
 slink	/sbin/fsck													../bin/busybox																777	0	0
 slink	/sbin/getty		   										../bin/busybox																777	0	0
 slink	/sbin/init													../bin/busybox																777	0	0
-
 #------------------------------------------------------------------------------------------------------------------------------------
 dir	/sys																																			755	0	0
 #------------------------------------------------------------------------------------------------------------------------------------
@@ -85,13 +144,17 @@ dir	/tmp/fontconfig																															755	0	0
 dir	/usr																																			755	0	0
 #------------------------------------------------------------------------------------------------------------------------------------
 dir	/var																																			755	0	0
-dir	/var/lib																																		755	0	0
-slink	/var/lib/misc												../../tmp																	777	0	0
 slink	/var/cache													../tmp																		777	0	0
+dir	/var/empty																																	755	0	0
+dir	/var/lib																																		755	0	0
+dir 	/var/lib/arpd 																																755 	0 	0
+slink /var/lib/misc 												../../tmp 																	777 	0 	0
 slink	/var/lock													../tmp																		777	0	0
 slink	/var/log														../tmp																		777	0	0
 slink	/var/run														../run																		777	0	0
+slink /var/spool 													../tmp 																		777 	0 	0
 slink	/var/tmp														../tmp																		777	0	0
+dir 	/var/www 																																	755 	0 	0
 #------------------------------------------------------------------------------------------------------------------------------------
 
 #dir	 <name>																										<mode> <uid> <gid>
