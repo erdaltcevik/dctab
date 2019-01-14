@@ -60,13 +60,15 @@ file 	/etc/issue 													/tks/dctab/br_img-full/etc/issue 									644 	0 	
 slink /etc/localtime 											../usr/share/zoneinfo/Turkey 											777 	0 	0
 file 	/etc/mke2fs.conf 											/tks/dctab/br_img-full/etc/mke2fs.conf 							644 	0 	0
 slink /etc/mtab 													../proc/self/mounts 														777 	0 	0
+dir 	/etc/modprobe.d																															755 	0 	0
+file	/etc/modprobe.d/g_ether.conf							/tks/dctab/filesys/etc/modprobe.d/g_ether.conf					644	0	0
 dir 	/etc/network 																																755 	0 	0
 dir 	/etc/network/if-down.d 																													755 	0 	0
 dir 	/etc/network/if-post-down.d 																											755 	0 	0
 dir 	/etc/network/if-pre-up.d 																												755 	0 	0
 file 	/etc/network/if-pre-up.d/wait_iface 				/tks/dctab/br_img-full/etc/network/if-pre-up.d/wait_iface 	755 	0 	0
 dir 	/etc/network/if-up.d 																													755 	0 	0
-file 	/etc/network/interfaces 								/tks/dctab/br_img-full/etc/network/interfaces 					644 	0 	0
+file 	/etc/network/interfaces 								/tks/dctab/filesys/etc/network/interfaces 						644 	0 	0
 file 	/etc/nsswitch.conf 										/tks/dctab/br_img-full/etc/nsswitch.conf 							644 	0 	0
 slink /etc/os-release 											../usr/lib/os-release 													777 	0 	0
 dir 	/etc/pam.d 																																	755 	0 	0
