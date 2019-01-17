@@ -1,0 +1,8 @@
+#! /bin/sh
+
+# The repository contents have already been cloned from the remote
+# To restore the content that was not under git tracking:
+
+# the nVCS directory:
+#mkdir nVCS
+
