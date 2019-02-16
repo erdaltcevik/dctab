@@ -98,18 +98,29 @@ dir 	/etc/ssh 																																	755 	0 	0
 file 	/etc/ssh/moduli 											/dvl/dctab/br_img-full/etc/ssh/moduli 								644 	0 	0
 file 	/etc/ssh/ssh_config 										/dvl/dctab/br_img-full/etc/ssh/ssh_config 						644 	0 	0
 file 	/etc/ssh/sshd_config 									/dvl/dctab/br_img-full/etc/ssh/sshd_config 						644 	0 	0
+file 	/etc/ssh/ssh_host_dsa_key								/dvl/dctab/filesys/etc/ssh/ssh_host_dsa_key						600 	0 	0
+file 	/etc/ssh/ssh_host_dsa_key.pub							/dvl/dctab/filesys/etc/ssh/ssh_host_dsa_key.pub					644 	0 	0
+file 	/etc/ssh/ssh_host_ecdsa_key							/dvl/dctab/filesys/etc/ssh/ssh_host_ecdsa_key					600 	0 	0
+file 	/etc/ssh/ssh_host_ecdsa_key.pub						/dvl/dctab/filesys/etc/ssh/ssh_host_ecdsa_key.pub				644 	0 	0
+file 	/etc/ssh/ssh_host_ed25519_key							/dvl/dctab/filesys/etc/ssh/ssh_host_ed25519_key					600 	0 	0
+file 	/etc/ssh/ssh_host_ed25519_key.pub					/dvl/dctab/filesys/etc/ssh/ssh_host_ed25519_key.pub			644 	0 	0
+file 	/etc/ssh/ssh_host_rsa_key								/dvl/dctab/filesys/etc/ssh/ssh_host_rsa_key						600 	0 	0
+file 	/etc/ssh/ssh_host_rsa_key.pub							/dvl/dctab/filesys/etc/ssh/ssh_host_rsa_key.pub					644 	0 	0
 dir 	/etc/ssl 																																	755 	0 	0
 dir 	/etc/ssl/certs																																755 	0 	0
-dir 	/etc/ssl/man																																755 	0 	0
-dir 	/etc/ssl/man/man1																															755 	0 	0
-dir 	/etc/ssl/man/man3																															755 	0 	0
-dir 	/etc/ssl/man/man5																															755 	0 	0
-dir 	/etc/ssl/man/man7																															755 	0 	0
+file 	/etc/ssl/ct_log_list.cnf								/dvl/dctab/br_img-full/etc/ssl/ct_log_list.cnf 					644 	0 	0
+file 	/etc/ssl/ct_log_list.cnf.dist							/dvl/dctab/br_img-full/etc/ssl/ct_log_list.cnf.dist			644 	0 	0
 dir 	/etc/ssl/misc																																755 	0 	0
+file 	/etc/ssl/misc/tsget.pl									/dvl/dctab/br_img-full/etc/ssl/misc/tsget.pl						755 	0 	0
 file 	/etc/ssl/openssl.cnf 									/dvl/dctab/br_img-full/etc/ssl/openssl.cnf 						644 	0 	0
+file 	/etc/ssl/openssl.cnf.dist								/dvl/dctab/br_img-full/etc/ssl/openssl.cnf.dist 				644 	0 	0
 dir 	/etc/ssl/private																															755 	0 	0
 file 	/etc/syslog.conf											/dvl/dctab/br_img-full/etc/syslog.conf 							644 	0 	0
 file 	/etc/timezone 												/dvl/dctab/br_img-full/etc/timezone 								644 	0 	0
+#------------------------------------------------------------------------------------------------------------------------------------
+dir	/home																																			755	0	0
+dir	/home/erdal																																	755	0	0
+file	/home/erdal/.profile										/dvl/dctab/filesys/home/erdal/.profile								644	0	0
 #------------------------------------------------------------------------------------------------------------------------------------
 file	/init															/dvl/dctab/br_img-full/init											755	0	0
 #------------------------------------------------------------------------------------------------------------------------------------
@@ -143,15 +154,15 @@ slink	/var/cache													../tmp																		777	0	0
 dir	/var/empty																																	755	0	0
 dir	/var/lib																																		755	0	0
 dir 	/var/lib/arpd 																																755 	0 	0
-slink /var/lib/misc 												../../tmp 																	777 	0 	0
 slink	/var/lock													../tmp																		777	0	0
 slink	/var/log														../tmp																		777	0	0
 slink	/var/run														../run																		777	0	0
 slink /var/spool 													../tmp 																		777 	0 	0
 slink	/var/tmp														../tmp																		777	0	0
 dir 	/var/www 																																	755 	0 	0
-#------------------------------------------------------------------------------------------------------------------------------------
 
+#------------------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------------------------------
 #dir	 <name>																										<mode> <uid> <gid>
 #file	 <name>														<location>									<mode> <uid> <gid> [<hard links>]
 #slink <name>														<target>										<mode> <uid> <gid>

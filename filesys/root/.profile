@@ -1,4 +1,4 @@
-alias l='ls -Alp --group-directories-first --color=auto'
+alias l='ls -Alp --color=auto'
 alias ll='l | less'
 alias lw='ls -w1 -Ap'
 
