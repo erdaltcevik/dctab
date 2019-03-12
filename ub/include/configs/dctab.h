@@ -8,11 +8,6 @@
 #define _DCTAB_CONFIG_H
 
 /*
- * A23 specific configuration
- */
-#include <configs/sun8i.h>
-
-/*
  * Include common sunxi configuration where most the settings are
  */
 #include <configs/sunxi-common.h>
@@ -38,8 +33,12 @@
 	"console=ttyS0,115200\0"
 
 #else /* ifndef CONFIG_SPL_BUILD */
+
+
 #undef CONFIG_EXTRA_ENV_SETTINGS
 #define CONFIG_EXTRA_ENV_SETTINGS
+
+
 #endif
 
 #endif /* _DCTAB_CONFIG_H */

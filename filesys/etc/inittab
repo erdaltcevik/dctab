@@ -13,11 +13,10 @@
 # action    == one of sysinit, respawn, askfirst, wait, and once
 # process   == program to run
 
-# Startup the system
 ::sysinit:/bin/mount -t proc proc /proc
+
 ::sysinit:/bin/mkdir -p /dev/pts /dev/shm
 
-# fstab processing :
 ::sysinit:/bin/mount -a
 
 null::sysinit:/bin/ln -sf /proc/self/fd /dev/fd
@@ -25,7 +24,7 @@ null::sysinit:/bin/ln -sf /proc/self/fd/0 /dev/stdin
 null::sysinit:/bin/ln -sf /proc/self/fd/1 /dev/stdout
 null::sysinit:/bin/ln -sf /proc/self/fd/2 /dev/stderr
 
-null::sysinit:/bin/ln -sf /tmp/log /dev/log
+::sysinit:mount -t debugfs none /sys/kernel/debug
 
 # now run any rc scripts
 ::sysinit:/etc/init.d/rcS
